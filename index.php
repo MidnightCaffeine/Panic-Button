@@ -56,7 +56,7 @@ if (isset($_SESSION['sos_userType'])) {
                     <div class="col-md-7">
                         <div class="card-body">
                             <div class="brand-wrapper">
-                                <img src="assets/img/logo.svg" alt="logo" class="logo">
+                                <img src="assets/img/logo.svg" alt="logo" class="logo"> <span class="d-none d-lg-block">Panic Button</span>
                             </div>
                             <p class="login-card-description">Sign into Panic Button Database</p>
                             <form id="login-form" action="lib/authentication/login.php" method="post">

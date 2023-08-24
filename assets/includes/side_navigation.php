@@ -27,7 +27,7 @@
         </li>
 
         <?php
-        if ($_SESSION['userType'] == '1') {
+        if ($_SESSION['sos_userType'] == '1') {
             // Only super Admin access
         ?>
 
