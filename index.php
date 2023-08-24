@@ -3,7 +3,7 @@
 require_once 'lib/databaseHandler/connection.php';
 require_once 'lib/init.php';
 
-if (isset($_SESSION['sos_userType'])) {
+if (isset($_SESSION['sos_userEmail'])) {
     header("Location: home.php");
 }
 ?>
