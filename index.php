@@ -15,6 +15,7 @@ if (isset($_SESSION['sos_userType'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/img/logo.png" rel="icon">
     <title>Panic button Login</title>
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/material_design_icons.min.css" />
@@ -56,9 +57,9 @@ if (isset($_SESSION['sos_userType'])) {
                     <div class="col-md-7">
                         <div class="card-body">
                             <div class="brand-wrapper">
-                                <img src="assets/img/logo.svg" alt="logo" class="logo"> <span class="d-none d-lg-block">Panic Button</span>
+                                <img src="assets/img/panicLogo.png" alt="logo" class="logo">
                             </div>
-                            <p class="login-card-description">Sign into Panic Button Database</p>
+                            <p class="login-card-description">Sign in</p>
                             <form id="login-form" action="lib/authentication/login.php" method="post">
                             <p class="login-message"></p>
                                 <div class="form-group">
