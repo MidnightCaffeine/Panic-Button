@@ -31,9 +31,9 @@ require_once 'lib/no_session_bypass.php';
         </div>
         <section class="section dashboard">
 
-            <button type="button" class="btn btn-primary ms-auto mb-3" data-bs-toggle="modal" data-bs-target="#addFees">Add Client</button>
+            <button type="button" class="btn btn-primary ms-auto mb-3" data-bs-toggle="modal" data-bs-target="#addClient">Add Client</button>
 
-            <table id="feesTable" class="display table table-bordered">
+            <table id="clientTable" class="display table table-bordered">
                 <thead>
                     <tr>
                         <th>Firstname</th>
@@ -57,7 +57,7 @@ require_once 'lib/no_session_bypass.php';
     ?>
 
     <!-- add fees modal -->
-    <div class="modal fade" id="addFees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="addClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
 
@@ -66,43 +66,37 @@ require_once 'lib/no_session_bypass.php';
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addFeesForm" action="lib/fees/add_fees.php" method="post">
+                    <form id="addClientForm" action="lib/client/add_client.php" method="post">
                         <p class="form-message"></p>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="fees_title" name="fees_title" placeholder="Title">
-                            <label for="fees_title">Tittle</label>
+                            <input type="text" class="form-control" id="client_firstname" name="client_firstname" placeholder="Firstname">
+                            <label for="client_firstname">Firstname</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="fees_details" name="fees_details" placeholder="Details">
-                            <label for="fees_details">Detail</label>
+                            <input type="text" class="form-control" id="client_lastname" name="client_lastname" placeholder="Lastname">
+                            <label for="client_lastname">Lastname</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="fees_year">
-                                <option value="5">All</option>
-                                <option value="1">Freshman (1st year)</option>
-                                <option value="2">Sophomore (2nd year)</option>
-                                <option value="3">Junior (3rd year)</option>
-                                <option value="4">Senior (4th year)</option>
-                            </select>
-                            <label for="fees_year">Year Group</label>
+                            <input type="text" class="form-control" id="client_middlename" name="client_middlename" placeholder="Middlename">
+                            <label for="client_middlename">Middlename</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="fees_cost" placeholder="Cost">
-                            <label for="fees_cost">Cost</label>
+                            <input type="text" class="form-control" id="client_age" placeholder="Age">
+                            <label for="client_age">Age</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="deadline" placeholder="Deadline">
-                            <label for="deadline">Deadline</label>
+                            <input type="text" class="form-control" id="client_address" placeholder="Address">
+                            <label for="client_address">Address</label>
                         </div>
-                        <script>
-                            $('#deadline').datepicker({
-                                format: 'mm/dd/yyyy',
-                            });
-                        </script>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="client_device_id" placeholder="Device ID">
+                            <label for="client_device_id">Device ID</label>
+                        </div>
+
                         <div class="col-md-12 text-center block">
-                            <button type="submit" name="add_fees" id="add_fees" class="btn btn-secondary w-100">Add</button>
+                            <button type="submit" name="add_client" id="add_client" class="btn btn-secondary w-100">Add</button>
                         </div>
                     </form>
                 </div>
@@ -113,53 +107,45 @@ require_once 'lib/no_session_bypass.php';
 
     <!-- edit fees modal -->
 
-    <div class="modal fade" id="editFees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="editClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Fees</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Client</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editFeesForm" action="lib/fees/edit_fees.php" method="post">
+                    <form id="editClientForm" action="lib/fees/edit_client.php" method="post">
                         <p class="form-message"></p>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="edit_fees_title" name="edit_fees_title" placeholder="Title">
-                            <label for="edit_fees_title">Tittle</label>
+                            <input type="text" class="form-control" id="edit_client_firstname" name="edit_client_firstname" placeholder="Firstname">
+                            <label for="edit_client_firstname">Firstname</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="edit_fees_details" name="edit_fees_details" placeholder="Details">
-                            <label for="edit_fees_details">Detail</label>
+                            <input type="text" class="form-control" id="edit_client_lastname" name="edit_client_lastname" placeholder="Lastname">
+                            <label for="edit_client_lastname">Lastname</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="edit_fees_year">
-                                <option value="5">All</option>
-                                <option value="1">Freshman (1st year)</option>
-                                <option value="2">Sophomore (2nd year)</option>
-                                <option value="3">Junior (3rd year)</option>
-                                <option value="4">Senior (4th year)</option>
-                            </select>
-                            <label for="edit_fees_year">Year Group</label>
+                            <input type="text" class="form-control" id="edit_client_middlename" name="edit_client_middlename" placeholder="Middlename">
+                            <label for="edit_client_middlename">Middlename</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="edit_fees_cost" placeholder="Cost">
-                            <label for="edit_fees_cost">Cost</label>
+                            <input type="text" class="form-control" id="edit_client_age" placeholder="Age">
+                            <label for="edit_client_age">Age</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="edit_deadline" placeholder="Deadline">
-                            <label for="edit_deadline">Deadline</label>
+                            <input type="text" class="form-control" id="edit_client_address" placeholder="Address">
+                            <label for="edit_client_address">Address</label>
                         </div>
-                        <script>
-                            $('#edit_deadline').datepicker({
-                                format: 'mm/dd/yyyy',
-                            });
-                        </script>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="edit_client_device_id" placeholder="Device ID">
+                            <label for="edit_client_device_id">Device ID</label>
+                        </div>
                         <input type="hidden" id="hid" name="hid">
                         <div class="col-md-12 text-center block">
-                            <button type="submit" name="edit_fees" id="edit_fees" class="btn btn-secondary w-100">Edit</button>
+                            <button type="submit" name="edit_cliend" id="edit_client" class="btn btn-secondary w-100">Update</button>
                         </div>
                     </form>
                 </div>
@@ -167,6 +153,8 @@ require_once 'lib/no_session_bypass.php';
             </div>
         </div>
     </div>
+
+
 </body>
 
 </html>

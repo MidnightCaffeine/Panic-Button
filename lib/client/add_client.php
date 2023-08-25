@@ -2,41 +2,49 @@
 require_once '../databaseHandler/connection.php';
 
 
-if (isset($_POST['add_fees'])) {
-    $fees_title = $_POST['fees_title'];
-    $fees_details = $_POST['fees_details'];
-    $fees_year = $_POST['fees_year'];
-    $fees_cost = $_POST['fees_cost'];
-    $deadline = strtotime($_POST['deadline']);
-    $deadline = date("Y-m-d", $deadline);
+if (isset($_POST['add_client'])) {
+    $client_firstname = $_POST['client_firstname'];
+    $client_lastname = $_POST['client_lastname'];
+    $client_middlename = $_POST['client_middlename'];
+    $client_age = $_POST['client_age'];
+    $client_address = $_POST['client_address'];
+    $client_device_id = $_POST['client_device_id'];
 
-    $errorTitle = false;
-    $errorDetails = false;
-    $errorYear = false;
-    $errorCost = false;
-    $errorDeadline = false;
+    $errorFirstname = false;
+    $errorLastname = false;
+    $errorMiddlename = false;
+    $errorAge = false;
+    $errorAddress = false;
+    $errorDevice = false;
 
     // error handler for empty fields
-    if (empty($fees_title)) {
+    if (empty($client_firstname)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorTitle = true;
-    } elseif (empty($fees_details)) {
+        $errorFirstname = true;
+    } elseif (empty($client_lastname)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorDetails = true;
-    } elseif (empty($fees_cost)) {
+        $errorLastname = true;
+    } elseif (empty($client_middlename)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorCost = true;
-    } elseif (empty($deadline)) {
+        $errorMiddlename = true;
+    } elseif (empty($client_age)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorDeadline = true;
+        $errorAge = true;
+    }elseif (empty($client_address)) {
+        echo "<span class='form-error'>Fill in all fields!</span>";
+        $errorAddress = true;
+    }elseif (empty($client_device_id)) {
+        echo "<span class='form-error'>Fill in all fields!</span>";
+        $errorDevice = true;
     } else {
-        $insert = $pdo->prepare("INSERT INTO fees_list(fees_title, fees_description, year_included, cost, deadline) VALUES(:fees_title, :fees_description, :year_included, :cost, :deadline)");
+        $insert = $pdo->prepare("INSERT INTO client_list(firstname, lastname, middlename, age, address, device_id) VALUES(:client_firstname, :client_lastname, :client_middlename, :client_age, :client_address, :client_device_id)");
 
-        $insert->bindparam('fees_title', $fees_title);
-        $insert->bindparam('fees_description', $fees_details);
-        $insert->bindparam('year_included', $fees_year);
-        $insert->bindparam('cost', $fees_cost);
-        $insert->bindparam('deadline', $deadline);
+        $insert->bindparam('client_firstname', $client_firstname);
+        $insert->bindparam('client_lastname', $client_lastname);
+        $insert->bindparam('client_middlename', $client_middlename);
+        $insert->bindparam('client_age', $client_age);
+        $insert->bindparam('client_address', $client_address);
+        $insert->bindparam('client_device_id', $client_device_id);
 
         $insert->execute();
     }
@@ -44,35 +52,43 @@ if (isset($_POST['add_fees'])) {
 ?>
 
 <script>
-    $("#fees_title, #fees_details, #fees_cost, #deadline").removeClass(".input-error");
+    $("#client_firstname, #client_lastname, #client_middlename, #client_age, #client_address, #client_device_id").removeClass(".input-error");
 
-    var errorTitle = "<?php echo $errorTitle; ?>";
-    var errorDetails = "<?php echo $errorDetails; ?>";
-    var errorYear = "<?php echo $errorYear; ?>";
-    var errorCost = "<?php echo $errorCost; ?>";
-    var errorDeadline = "<?php echo $errorDeadline; ?>";
+    var errorFirstname = "<?php echo $errorFirstname; ?>";
+    var errorLastname = "<?php echo $errorLastname; ?>";
+    var errorMiddlename = "<?php echo $errorMiddlename; ?>";
+    var errorAge = "<?php echo $errorAge; ?>";
+    var errorAddress = "<?php echo $errorAddress; ?>";
+    var errorDevice = "<?php echo $errorDevice; ?>";
 
-    if (errorTitle == true) {
-        $("#fees_title").addClass("input-error");
+
+    if (errorFirstname == true) {
+        $("#client_firstname").addClass("input-error");
     }
-    if (errorDetails == true) {
-        $("#fees_details").addClass("input-error");
+    if (errorLastname == true) {
+        $("#client_lastname").addClass("input-error");
     }
-    if (errorCost == true) {
-        $("#fees_cost").addClass("input-error");
+    if (errorMiddlename == true) {
+        $("#client_middlename").addClass("input-error");
     }
-    if (errorDeadline == true) {
-        $("#deadline").addClass("input-error");
+    if (errorAge == true) {
+        $("#client_age").addClass("input-error");
+    }
+    if (errorAddress == true) {
+        $("#client_address").addClass("input-error");
+    }
+    if (errorDevice == true) {
+        $("#client_device_id").addClass("input-error");
     }
 
-    if (errorTitle == false && errorDetails == false && errorCost == false && errorDeadline == false) {
-        $("#fees_title, #fees_details, #fees_cost, #deadline").val("");
+    if (errorFirstname == false && errorLastname == false && errorMiddlename == false && errorAge == false && errorAddress == false && errorDevice == false) {
+        $("#client_firstname, #client_lastname, #client_middlename, #client_age, #client_address, #client_device_id").val("");
 
-        var myModalEl = document.getElementById('addFees');
+        var myModalEl = document.getElementById('addClient');
         var modal = bootstrap.Modal.getInstance(myModalEl)
         modal.hide();
 
-        $('#feesTable').DataTable().ajax.reload();
+        $('#clientTable').DataTable().ajax.reload();
 
         Swal.fire({
             title: "Adding Fess Successful!",

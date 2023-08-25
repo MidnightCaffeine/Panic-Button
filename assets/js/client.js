@@ -1,30 +1,32 @@
 $(document).ready(function () {
     
   $(document).ready(function () {
-    $("#feesTable").DataTable({
+    $("#clientTable").DataTable({
       processing: true,
       serverSide: true,
       ajax: "lib/client/fetch_data.php",
     });
   });
 
-  $("#addFeesForm").submit(function (event) {
+  $("#addClientForm").submit(function (event) {
     event.preventDefault();
 
-    var fees_title = $("#fees_title").val();
-    var fees_details = $("#fees_details").val();
-    var fees_year = $("#fees_year").val();
-    var fees_cost = $("#fees_cost").val();
-    var deadline = $("#deadline").val();
-    var add_fees = $("#add_fees").val();
+    var client_firstname = $("#client_firstname").val();
+    var client_lastname = $("#client_lastname").val();
+    var client_middlename = $("#client_middlename").val();
+    var client_age = $("#client_age").val();
+    var client_address = $("#client_address").val();
+    var client_device_id = $("#client_device_id").val();
+    var add_client = $("#add_client").val();
 
     $(".form-message").load("lib/client/add_client.php", {
-      fees_title: fees_title,
-      fees_details: fees_details,
-      fees_year: fees_year,
-      fees_cost: fees_cost,
-      deadline: deadline,
-      add_fees: add_fees,
+      client_firstname: client_firstname,
+      client_lastname: client_lastname,
+      client_middlename: client_middlename,
+      client_age: client_age,
+      client_address: client_address,
+      client_device_id: client_device_id,
+      add_client: add_client
     });
   });
 
@@ -56,7 +58,7 @@ $(document).ready(function () {
               timerProgressBar: true,
               showConfirmButton: false,
             });
-            $("#feesTable").DataTable().ajax.reload();
+            $("#clientTable").DataTable().ajax.reload();
           },
         });
       }
@@ -73,36 +75,38 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (data) {
-        $("#editFees").modal("show");
-        $("#edit_fees_title").val(data.title);
-        $("#edit_fees_details").val(data.descripton);
-        $("#edit_fees_year").val(data.year);
-        $("#edit_fees_cost").val(data.cost);
-        $("#edit_deadline").val(data.deadline);
+        $("#editClient").modal("show");
+        $("#edit_client_firstname").val(data.firstname);
+        $("#edit_client_middlename").val(data.middlename);
+        $("#edit_client_lastname").val(data.lastname);
+        $("#edit_client_age").val(data.age);
+        $("#edit_client_address").val(data.address);
+        $("#edit_client_device_id").val(data.device_id);
         $("#hid").val(member_id);
-        $(".modal-title").text("Edit Fee Details");
       },
     });
   });
 
-  $("#editFeesForm").submit(function (event) {
+  $("#editClientForm").submit(function (event) {
     event.preventDefault();
 
-    var fees_title = $("#edit_fees_title").val();
-    var fees_details = $("#edit_fees_details").val();
-    var fees_year = $("#edit_fees_year").val();
-    var fees_cost = $("#edit_fees_cost").val();
-    var deadline = $("#edit_deadline").val();
-    var edit_fees = $("#edit_fees").val();
+    var edit_client_firstname = $("#edit_client_firstname").val();
+    var edit_client_middlename = $("#edit_client_middlename").val();
+    var edit_client_lastname = $("#edit_client_lastname").val();
+    var edit_client_age = $("#edit_client_age").val();
+    var edit_client_address = $("#edit_client_address").val();
+    var edit_client_device_id = $("#edit_client_device_id").val();
+    var edit_client = $("#edit_client").val();
     var hid = $("#hid").val();
 
     $(".form-message").load("lib/client/edit_client.php", {
-      fees_title: fees_title,
-      fees_details: fees_details,
-      fees_year: fees_year,
-      fees_cost: fees_cost,
-      deadline: deadline,
-      edit_fees: edit_fees,
+      edit_client_firstname: edit_client_firstname,
+      edit_client_middlename: edit_client_middlename,
+      edit_client_lastname: edit_client_lastname,
+      edit_client_age: edit_client_age,
+      edit_client_address: edit_client_address,
+      edit_client_device_id: edit_client_device_id,
+      edit_client: edit_client,
       hid: hid,
     });
   });

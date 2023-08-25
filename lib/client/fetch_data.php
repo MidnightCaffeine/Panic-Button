@@ -18,8 +18,8 @@ $primaryKey = 'client_id';
 // The `dt` parameter represents the DataTables column identifier. 
 $columns = array(
     array('db' => 'firstname', 'dt' => 0),
-    array('db' => 'lastname',  'dt' => 1),
-    array('db' => 'middlename',  'dt' => 2),
+    array('db' => 'middlename',  'dt' => 1),
+    array('db' => 'lastname',  'dt' => 2),
     array('db' => 'age',      'dt' => 3),
     array('db' => 'address',      'dt' => 4),
     array('db' => 'device_id',      'dt' => 5),

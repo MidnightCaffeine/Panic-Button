@@ -2,85 +2,100 @@
 require_once '../databaseHandler/connection.php';
 
 
-if (isset($_POST['edit_fees'])) {
+if (isset($_POST['edit_client'])) {
 
     $id = $_POST['hid'];
-    $fees_title = $_POST['fees_title'];
-    $fees_details = $_POST['fees_details'];
-    $fees_year = $_POST['fees_year'];
-    $fees_cost = $_POST['fees_cost'];
-    $deadline = strtotime($_POST['deadline']);
-    $deadline = date("Y-m-d", $deadline);
+    $edit_client_firstname = $_POST['edit_client_firstname'];
+    $edit_client_middlename = $_POST['edit_client_middlename'];
+    $edit_client_lastname = $_POST['edit_client_lastname'];
+    $edit_client_age = $_POST['edit_client_age'];
+    $edit_client_address = $_POST['edit_client_address'];
+    $edit_client_device_id = $_POST['edit_client_device_id'];
 
-    $errorTitle = false;
-    $errorDetails = false;
-    $errorYear = false;
-    $errorCost = false;
-    $errorDeadline = false;
+    $errorFirstname = false;
+    $errorLastname = false;
+    $errorMiddlename = false;
+    $errorAge = false;
+    $errorAddress = false;
+    $errorDevice = false;
 
     // error handler for empty fields
-    if (empty($fees_title)) {
+    if (empty($edit_client_firstname)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorTitle = true;
-    } elseif (empty($fees_details)) {
+        $errorFirstname = true;
+    } elseif (empty($edit_client_middlename)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorDetails = true;
-    } elseif (empty($fees_cost)) {
+        $errorLastname = true;
+    } elseif (empty($edit_client_middlename)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorCost = true;
-    } elseif (empty($deadline)) {
+        $errorMiddlename = true;
+    } elseif (empty($edit_client_age)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
-        $errorDeadline = true;
-    } else {
+        $errorAge = true;
+    }elseif (empty($edit_client_address)) {
+        echo "<span class='form-error'>Fill in all fields!</span>";
+        $errorAddress = true;
+    }elseif (empty($edit_client_device_id)) {
+        echo "<span class='form-error'>Fill in all fields!</span>";
+        $errorDevice = true;
+    }else {
 
-        $update = $pdo->prepare("UPDATE fees_list SET fees_title = :fees_title, fees_description = :fees_description, year_included = :year_included , cost = :cost , deadline = :deadline WHERE fees_id = :id");
+        $update = $pdo->prepare("UPDATE client_list SET firstname = :firstname, lastname = :lastname, middlename = :middlename , age = :age , address = :address, device_id = :device_id WHERE client_id = :id");
 
-        $update->bindparam('fees_title', $fees_title);
-        $update->bindparam('fees_description', $fees_details);
-        $update->bindparam('year_included', $fees_year);
-        $update->bindparam('cost', $fees_cost);
-        $update->bindparam('deadline', $deadline);
+        $update->bindparam('firstname', $edit_client_firstname);
+        $update->bindparam('lastname', $edit_client_lastname);
+        $update->bindparam('middlename', $edit_client_middlename);
+        $update->bindparam('age', $edit_client_age);
+        $update->bindparam('address', $edit_client_address);
+        $update->bindparam('device_id', $edit_client_device_id);
         $update->bindparam('id', $id);
 
         $update->execute();
     }
 }
 ?>
-
 <script>
-    $("#edit_fees_title, #edit_fees_details, #edit_fees_cost, #edit_deadline").removeClass(".input-error");
+    $("#edit_client_firstname, #edit_client_lastname, #edit_client_middlename, #edit_client_age, #edit_client_address, #edit_client_device_id").removeClass(".input-error");
 
-    var errorTitle = "<?php echo $errorTitle; ?>";
-    var errorDetails = "<?php echo $errorDetails; ?>";
-    var errorYear = "<?php echo $errorYear; ?>";
-    var errorCost = "<?php echo $errorCost; ?>";
-    var errorDeadline = "<?php echo $errorDeadline; ?>";
+    var errorFirstname = "<?php echo $errorFirstname; ?>";
+    var errorLastname = "<?php echo $errorLastname; ?>";
+    var errorMiddlename = "<?php echo $errorMiddlename; ?>";
+    var errorAge = "<?php echo $errorAge; ?>";
+    var errorAddress = "<?php echo $errorAddress; ?>";
+    var errorDevice = "<?php echo $errorDevice; ?>";
 
-    if (errorTitle == true) {
-        $("#fees_title").addClass("input-error");
+
+    if (errorFirstname == true) {
+        $("#client_firstname").addClass("input-error");
     }
-    if (errorDetails == true) {
-        $("#fees_details").addClass("input-error");
+    if (errorLastname == true) {
+        $("#client_lastname").addClass("input-error");
     }
-    if (errorCost == true) {
-        $("#fees_cost").addClass("input-error");
+    if (errorMiddlename == true) {
+        $("#client_middlename").addClass("input-error");
     }
-    if (errorDeadline == true) {
-        $("#deadline").addClass("input-error");
+    if (errorAge == true) {
+        $("#client_age").addClass("input-error");
+    }
+    if (errorAddress == true) {
+        $("#client_address").addClass("input-error");
+    }
+    if (errorDevice == true) {
+        $("#client_device_id").addClass("input-error");
     }
 
-    if (errorTitle == false && errorDetails == false && errorCost == false && errorDeadline == false) {
-        $("#edit_fees_title, #edit_fees_details, #edit_fees_cost, #edit_deadline").val("");
+    if (errorFirstname == false && errorLastname == false && errorMiddlename == false && errorAge == false && errorAddress == false && errorDevice == false) {
+        $("#edit_client_firstname, #edit_client_lastname, #edit_client_middlename, #edit_client_age, #edit_client_address, #edit_client_device_id").val("");
 
-        var myModalEl = document.getElementById('editFees');
+        var myModalEl = document.getElementById('editClient');
         var modal = bootstrap.Modal.getInstance(myModalEl)
         modal.hide();
 
-        $('#feesTable').DataTable().ajax.reload();
+        $('#clientTable').DataTable().ajax.reload();
 
         Swal.fire({
-            title: "Details Changed!!!",
-            text: "Details updated on th database",
+            title: "Adding Fess Successful!",
+            text: "You can now view the fees on fees tab",
             icon: "success",
             timer: 2000,
             timerProgressBar: true,

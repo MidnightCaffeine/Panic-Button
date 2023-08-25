@@ -5,7 +5,7 @@ include_once '../databaseHandler/connection.php';
 if(isset($_POST["fee_id"]))
 {
     $statement = $pdo->prepare(
-        "DELETE FROM fees_list WHERE fees_id = :id"
+        "DELETE FROM client_list WHERE client_id = :id"
     );
     $result = $statement->execute(
  

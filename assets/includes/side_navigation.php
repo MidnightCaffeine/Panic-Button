@@ -33,7 +33,7 @@
             <li class="nav-item">
                 <a class="nav-link 
             <?php
-            if ($page != 'Backup' || $page != 'Restore') {
+            if ($page != 'Backup And Restore') {
                 echo 'collapsed';
             }
             ?>
