@@ -9,20 +9,20 @@
             ?>
             " href="home.php">
                 <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
+                <span>Crime Record</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link 
             <?php
-            if ($page != 'Payments') {
+            if ($page != 'Clients') {
                 echo 'collapsed';
             }
             ?>
-            " href="payments.php">
+            " href="client_list.php">
                 <i class="bi bi-wallet2"></i>
-                <span>Payments</span>
+                <span>Client list</span>
             </a>
         </li>
 
