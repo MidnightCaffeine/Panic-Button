@@ -9,6 +9,7 @@ require_once 'lib/no_session_bypass.php';
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once 'assets/includes/head.php'; ?>
+<script type="text/javascript" src="assets/js/crime.js"></script>
 </head>
 
 <body>
@@ -28,18 +29,15 @@ require_once 'lib/no_session_bypass.php';
             </nav>
         </div>
         <section class="section dashboard">
-
-            <button type="button" class="btn btn-primary ms-auto mb-3" data-bs-toggle="modal" data-bs-target="#addClient">Add Crime Record</button>
-
-            <table id="clientTable" class="display table table-bordered">
+            <table id="crimeListTable" class="display table table-bordered">
                 <thead>
                     <tr>
                         <th>Firstname</th>
                         <th>Middlename</th>
                         <th>Lastname</th>
-                        <th>Age</th>
-                        <th>Address</th>
-                        <th>Device ID</th>
+                        <th>Coordinates</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Action</th>
                     </tr>
                 </thead>

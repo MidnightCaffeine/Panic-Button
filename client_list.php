@@ -41,7 +41,7 @@ require_once 'lib/no_session_bypass.php';
                         <th>Lastname</th>
                         <th>Age</th>
                         <th>Address</th>
-                        <th>Device ID</th>
+                        <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -91,12 +91,12 @@ require_once 'lib/no_session_bypass.php';
                             <label for="client_address">Address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="client_device_id" placeholder="Device ID">
-                            <label for="client_device_id">Device ID</label>
+                            <input type="text" class="form-control" id="client_device_id" placeholder="Phone Number">
+                            <label for="client_device_id">Phone Number</label>
                         </div>
 
                         <div class="col-md-12 text-center block">
-                            <button type="submit" name="add_client" id="add_client" class="btn btn-secondary w-100">Add</button>
+                            <button type="submit" name="add_client" id="add_client" class="btn btn-success w-100">Add</button>
                         </div>
                     </form>
                 </div>
@@ -140,12 +140,12 @@ require_once 'lib/no_session_bypass.php';
                             <label for="edit_client_address">Address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="edit_client_device_id" placeholder="Device ID">
-                            <label for="edit_client_device_id">Device ID</label>
+                            <input type="text" class="form-control" id="edit_client_device_id" placeholder="Phone Number">
+                            <label for="edit_client_device_id">Phone Number</label>
                         </div>
                         <input type="hidden" id="hid" name="hid">
                         <div class="col-md-12 text-center block">
-                            <button type="submit" name="edit_cliend" id="edit_client" class="btn btn-secondary w-100">Update</button>
+                            <button type="submit" name="edit_cliend" id="edit_client" class="btn btn-success w-100">Update</button>
                         </div>
                     </form>
                 </div>
