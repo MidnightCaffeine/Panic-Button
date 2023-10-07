@@ -27,7 +27,7 @@ $columns = array(
         'db'        => 'coordinates',
         'dt'        => 6,
         'formatter' => function ($d, $row) {
-            $d = '<a href="https://www.google.com/maps/place/' . $d . '" target="_blank"><i class="bi bi-map"></i> View Location</a>';
+            $d = '<a class="btn btn-primary" href="https://www.google.com/maps/place/' . $d . '" target="_blank"><i class="bi bi-map"></i> View Location</a>';
             return $d;
         }
     )
