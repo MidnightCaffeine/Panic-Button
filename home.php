@@ -4,12 +4,15 @@ require_once 'lib/databaseHandler/connection.php';
 require_once 'lib/init.php';
 require_once 'lib/no_session_bypass.php';
 
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once 'assets/includes/head.php'; ?>
 <script type="text/javascript" src="assets/js/crime.js"></script>
+
 </head>
 
 <body>
@@ -52,6 +55,9 @@ require_once 'lib/no_session_bypass.php';
     require_once 'assets/includes/script.php';
     ?>
 
+    <?php
+
+    ?>
 
 </body>
 
