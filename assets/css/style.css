@@ -719,18 +719,42 @@ h6 {
   flex-shrink: 0;
   flex-grow: 0;
 }
-.dashboard .sales-card .card-icon {
-  color: #4154f1;
-  background: #f6f6fe;
+
+
+
+.dashboard .baler-card .card-icon {
+  background: #f11313;
+  color: #e2f3f7;
 }
-.dashboard .revenue-card .card-icon {
-  color: #2eca6a;
-  background: #e0f8e9;
+.dashboard .casiguran-card .card-icon {
+  background: #ecec74;
+  color: #ffffff;
 }
-.dashboard .customers-card .card-icon {
-  color: #ff771d;
-  background: #ffecdf;
+.dashboard .dilasag-card .card-icon {
+  background: #60e660;
+  color: #e2f3f7;
 }
+.dashboard .dinalungan-card .card-icon {
+  background: #6e1337;
+  color: #e2f3f7;
+}
+.dashboard .dingalan-card .card-icon {
+  background: #0D98BA;
+  color: #e2f3f7;
+}
+.dashboard .dipaculao-card .card-icon {
+  background: #0cdab7;
+  color: #e2f3f7;
+}
+.dashboard .maria-card .card-icon {
+  background: #035f03;
+  color: #e2f3f7;
+}
+.dashboard .sanLuis-card .card-icon {
+  background: #80cfe9;
+  color: #e2f3f7;
+}
+
 
 /* Activity */
 .dashboard .activity {

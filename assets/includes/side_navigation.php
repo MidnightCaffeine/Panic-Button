@@ -3,13 +3,26 @@
         <li class="nav-item">
             <a class="nav-link 
             <?php
-            if ($page != 'Home') {
+            if ($page != 'Dashboard') {
                 echo 'collapsed';
             }
             ?>
             " href="home.php">
                 <i class="bi bi-grid"></i>
-                <span>Crime Record</span>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link 
+            <?php
+            if ($page != 'Cases') {
+                echo 'collapsed';
+            }
+            ?>
+            " href="cases.php">
+            <i class="bi bi-folder"></i>
+                <span>Cases</span>
             </a>
         </li>
 
@@ -21,7 +34,7 @@
             }
             ?>
             " href="client_list.php">
-                <i class="bi bi-wallet2"></i>
+            <i class="bi bi-person-badge"></i>
                 <span>Client list</span>
             </a>
         </li>
