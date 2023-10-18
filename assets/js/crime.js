@@ -12,8 +12,11 @@ $(document).ready(function () {
     window.open("https://www.google.com/maps/place/" + coordinates, '_blank');
 
     var coor = coordinates.split(",");
-    var lat = coor[0];
-    var long = coor[1];
+    var lat = 15.744679;
+    var long = 121.576187;
+
+
+    
 
     console.log("lat:" + lat);
     console.log("long:" + long);
@@ -26,7 +29,9 @@ $(document).ready(function () {
     };
   
     $.ajax(settings).done(function (response) {
-      console.log(response.address.town);
+      console.log(response);
+      console.log(response.address.village);
+      console.log(response.address.quarter);
     });
 
 
