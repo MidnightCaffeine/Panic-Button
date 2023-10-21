@@ -6,7 +6,7 @@ include_once '../databaseHandler/connection.php';
 require_once '../../assets/includes/time_relative.php';
 
 $statement = $pdo->prepare(
-    "SELECT * FROM logs ORDER BY log_id DESC LIMIT 5"
+    "SELECT * FROM logs ORDER BY log_id DESC LIMIT 6"
 );
 $statement->execute();
 $result = $statement->fetchAll();
