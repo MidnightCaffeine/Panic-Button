@@ -11,7 +11,7 @@ require_once 'lib/no_session_bypass.php';
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once 'assets/includes/head.php'; ?>
-<script type="text/javascript" src="assets/js/crime.js"></script>
+<script type="text/javascript" src="assets/js/dashboard.js"></script>
 
 </head>
 
@@ -45,7 +45,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>4</h6>
+                                            <h6 id="baler_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></i></div>
                                         <div class="ps-3">
-                                            <h6>3</h6>
+                                            <h6 id="casiguran_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>15</h6>
+                                            <h6 id="dilasag_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>6</h6>
+                                            <h6 id="dinalungan_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>1</h6>
+                                            <h6 id="dingalan_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>2</h6>
+                                            <h6 id="dipaculao_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>1</h6>
+                                            <h6 id="maria_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@ require_once 'lib/no_session_bypass.php';
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class="ri-map-pin-user-line"></i></div>
                                         <div class="ps-3">
-                                            <h6>4</h6>
+                                            <h6 id="sanLuis_cases">0</h6>
                                             <span class="text-success small pt-1 fw-bold">Cases</span>
                                         </div>
                                     </div>
@@ -182,37 +182,8 @@ require_once 'lib/no_session_bypass.php';
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Recent Activity <span>| Today</span></h5>
-                            <div class="activity">
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">32 min</div>
-                                    <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                    <div class="activity-content"> Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae</div>
-                                </div>
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">56 min</div>
-                                    <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                                    <div class="activity-content"> Voluptatem blanditiis blanditiis eveniet</div>
-                                </div>
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 hrs</div>
-                                    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                                    <div class="activity-content"> Voluptates corrupti molestias voluptatem</div>
-                                </div>
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">1 day</div>
-                                    <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                                    <div class="activity-content"> Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore</div>
-                                </div>
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 days</div>
-                                    <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                                    <div class="activity-content"> Est sit eum reiciendis exercitationem</div>
-                                </div>
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">4 weeks</div>
-                                    <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                                    <div class="activity-content"> Dicta dolorem harum nulla eius. Ut quidem quidem sit quas</div>
-                                </div>
+                            <div id="activity" class="activity">
+                                
                             </div>
                         </div>
                     </div>

@@ -108,7 +108,7 @@ $t = date("h:i:s A");
                         $this->charset         = $charset;
                         $this->conn            = $this->initializeDatabase();
                         $this->backupDir       = BACKUP_DIR ? BACKUP_DIR : '.';
-                        $this->backupFile      = 'backup-' . $this->dbName . '-' . date("Ymd_His", time()) . '.sql';
+                        $this->backupFile      = 'backup-' . $this->dbName . '-' . date("F_j_Y_g-i_a", time()) . '.sql';
                         $this->gzipBackupFile  = defined('GZIP_BACKUP_FILE') ? GZIP_BACKUP_FILE : true;
                     }
                     protected function initializeDatabase()
@@ -155,6 +155,16 @@ $t = date("h:i:s A");
                              * Iterate tables
                              */
                             $this->obfPrint("Preparing tables to backup...");
+                            $pdo = new PDO('mysql:host=localhost;dbname=sos', 'root', '');
+                            //echo'Connection Successful!';
+
+                            $action = 'Backup the database named backup-' . DB_NAME . '-' . date("F_j_Y_g-i_a", time()) . '.sql.gz';
+                            $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+                            $insertLog->bindParam(':id', $_SESSION['myid']);
+                            $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
+                            $insertLog->bindParam(':action', $action);
+                            $insertLog->execute();
                             foreach ($tables as $table) {
                                 $this->obfPrint("Backing up `" . $table . "` table..." . str_repeat('.', 50 - strlen($table)), 0, 0);
                                 /**
@@ -316,20 +326,6 @@ $t = date("h:i:s A");
                     echo '</div>';
                 }
 
-                if (strcmp($result, '<b>DB Backup successfully created!</b>') == 0) {
-                    $pdo = new PDO('mysql:host=localhost;dbname=sos', 'root', '');
-                    //echo'Connection Successful!';
-
-                    $action = 'Backup the database named backup-' . DB_NAME . '-' . date("Ymd_His", time()) . '.sql.gz';
-                    $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action, log_date, log_time) values(:id, :user, :action, :logDate, :logTime)");
-
-                    $insertLog->bindParam(':id', $_SESSION['myid']);
-                    $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
-                    $insertLog->bindParam(':action', $action);
-                    $insertLog->bindParam(':logDate', $d);
-                    $insertLog->bindParam(':logTime', $t);
-                    $insertLog->execute();
-                }
                 ?>
             </div>
         </section>

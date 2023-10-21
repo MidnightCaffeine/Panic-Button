@@ -244,13 +244,11 @@
                     if (strcmp($result, '<b>DB Restoration successful!</b>') == 0) {
                         $pdo = new PDO('mysql:host=localhost;dbname=sos', 'root', '');
                         //echo'Connection Successful!';
-                        $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action, log_date, log_time) values(:id, :user, :action, :logDate, :logTime)");
+                        $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
 
                         $insertLog->bindParam(':id', $_SESSION['myid']);
                         $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
                         $insertLog->bindParam(':action', $action);
-                        $insertLog->bindParam(':logDate', $d);
-                        $insertLog->bindParam(':logTime', $t);
                         $insertLog->execute();
                     }
                 }
