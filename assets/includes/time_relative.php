@@ -10,7 +10,7 @@ function time2str($ts)
     elseif ($diff > 0) {
         $day_diff = floor($diff / 86400);
         if ($day_diff == 0) {
-            if ($diff < 60) return 'just now';
+            if ($diff < 60) return  'just now';
             if ($diff < 120) return '1 minute ago';
             if ($diff < 3600) return floor($diff / 60) . ' minutes ago';
             if ($diff < 7200) return '1 hour ago';
@@ -27,7 +27,7 @@ function time2str($ts)
         if ($day_diff == 0) {
             if ($diff < 120) return 'a minute ago';
             if ($diff < 3600) return floor($diff / 60) . ' minutes ago';
-            if ($diff < 7200) return 'in an hour';
+            if ($diff < 7200) return 'an hour ago';
             if ($diff < 86400) return floor($diff / 3600) . ' hours ago';
         }
         if ($day_diff == 1) return 'Tomorrow';

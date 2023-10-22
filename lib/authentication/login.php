@@ -1,7 +1,6 @@
 <?php
-
+session_start();
 require_once '../databaseHandler/connection.php';
-require_once '../init.php';
 
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
