@@ -59,17 +59,17 @@
         }
         ?>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link 
             <?php
-            if ($page != 'Logs') {
-                echo 'collapsed';
-            }
+            // if ($page != 'Logs') {
+                //echo 'collapsed';
+            //}
             ?>
             " href="Payments.html">
                 <i class="bi bi-file-earmark-richtext"></i>
                 <span>Log</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </aside>

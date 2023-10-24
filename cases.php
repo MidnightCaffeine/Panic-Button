@@ -1,10 +1,12 @@
 <?php
 $page = 'Cases';
 require_once 'lib/databaseHandler/connection.php';
-require_once 'lib/init.php';
+session_start();
 require_once 'lib/no_session_bypass.php';
+date_default_timezone_set('Asia/Manila');
 
-
+$lat ="15.7718570";
+$long = "121.5542300";
 
 ?>
 
@@ -32,16 +34,16 @@ require_once 'lib/no_session_bypass.php';
             </nav>
         </div>
         <section class="section dashboard">
+
             <table id="crimeListTable" class="display table table-bordered">
                 <thead>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Middlename</th>
-                        <th>Lastname</th>
+                        <th>Fullname</th>
                         <th>Coordinates</th>
+                        <th>Barangay</th>
                         <th>Date</th>
-                        <th>Time</th>
                         <th>Action</th>
+                        <!-- <th>set location</th> -->
                     </tr>
                 </thead>
 
@@ -50,7 +52,10 @@ require_once 'lib/no_session_bypass.php';
         </section>
     </main>
 
+
+
     <?php
+
     include_once 'assets/includes/footer.php';
     require_once 'assets/includes/script.php';
     ?>

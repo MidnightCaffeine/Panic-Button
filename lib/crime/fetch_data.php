@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Manila');
 // Database connection info 
 $dbDetails = array(
     'host' => 'localhost',
@@ -17,20 +18,45 @@ $primaryKey = 'crime_id';
 // The `db` parameter represents the column name in the database.  
 // The `dt` parameter represents the DataTables column identifier. 
 $columns = array(
-    array('db' => 'firstname', 'dt' => 0),
-    array('db' => 'middlename',  'dt' => 1),
-    array('db' => 'lastname',  'dt' => 2),
-    array('db' => 'coordinates', 'dt' => 3),
-    array('db' => 'date',      'dt' => 4),
-    array('db' => 'time',      'dt' => 5),
+    array('db' => 'name', 'dt' => 0),
+    array('db' => 'coordinates',  'dt' => 1),
+    array(
+        'db'        => 'municipality',
+        'dt'        => 2,
+        'formatter' => function ($d, $row) {
+            $d = '<p class="municipality">'.$d.'</p>';
+            return $d;
+        }
+    ),
+    array(
+        'db'        => 'date',
+        'dt'        => 3,
+        'formatter' => function ($d, $row) {
+            $d = date("F j, Y, g:i a" , strtotime($d));
+            return $d;
+        }
+    ),
     array(
         'db'        => 'coordinates',
-        'dt'        => 6,
+        'dt'        => 4,
         'formatter' => function ($d, $row) {
-            $d = '<button type="button" id="'. $d . '" class="btn btn-primary setLocation"><i class="bi bi-map"></i> View Location</button>';
+            $d = '
+            
+            <button type="button" id="'. $d . '" class="btn btn-primary setLocation"><i class="bi bi-map"></i> View Location</button>
+            ';
             return $d;
         }
     )
+    // array(
+    //     'db'        => 'crime_id',
+    //     'dt'        => 5,
+    //     'formatter' => function ($d, $row) {
+    //         $d = '
+    //         <button type="button" id="'. $d . '" class="btn btn-primary sets"><i class="bi bi-map"></i> get loc</button>
+    //         ';
+    //         return $d;
+    //     }
+    // )
 );
 
 // Include SQL query processing class 

@@ -1,45 +1,41 @@
 <?php
 
 require_once 'lib/databaseHandler/connection.php';
+$subcity = "Havent yet viewed location";
 
-if (isset($_POST['phone'])) {
-    $phone = $_POST['phone'];
-    $coordinates = $_POST['coordinates'];
+if (isset($_POST['message'])) {
 
-?>
+    $message = $_POST['message'];
+    $phone = "+" . trim($_POST['phone']);
+    $split = explode("=", $message);
 
-    <script>
-        var coordinates = "<?php echo $coordinates; ?>";
-        var coor = coordinates.split(",");
-        var lat = coor[0];
-        var long = coor[1];
+    $coordinates = $split[1];
+    $scoor = explode(",", $coordinates);
+    $lat = $scoor[0];
+    $long = $scoor[1];
+    $curlUrl = "https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=" . $lat . "," . $long . "&language=en";
 
-        console.log("lat:" + lat);
-        console.log("long:" + long);
+    $select = $pdo->prepare("SELECT * FROM client_list WHERE device_id = '$phone'");
+    $select->execute();
+    while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
+        $firstname = $row['firstname'];
+        $lastname = $row['lastname'];
+        $middlename = $row['middlename'];
+    }
+    $fullname = $firstname . " " . $middlename . " " . $lastname;
 
-        var settings = {
-            async: true,
-            crossDomain: true,
-            url: "https://us1.locationiq.com/v1/reverse?key=pk.7fd2e71ba1d253237b5602434f403b9e&lat=" + lat + "&lon=" + long + "&format=json",
-            method: "GET",
-        };
+    if ($select->rowCount() > 0) {
+        $insert = $pdo->prepare("INSERT INTO crime_list(name, coordinates, municipality) VALUES(:fullname, :coordinates , :subcity)");
+        $insert->bindParam("fullname", $fullname);
+        $insert->bindParam("coordinates", $coordinates);
+        $insert->bindParam("subcity", $subcity);
+        if ($insert->execute()) {
 
-        $.ajax(settings).done(function(response) {
-            var village = response.address.village;
-            var phone = "<?php echo $phone; ?>";
+            echo "success";
+            echo $lat;
+            echo $long;
+        }
+    }
 
-
-            $.ajax({ 
-                url: "lib/bridge/insert_data.php",
-                method: "POST",
-                data: {
-                    phone: phone,
-                    coordinates: coordinates,
-                    village: village
-                }
-            });
-        });
-    </script>
-
-<?php
+    
 }
