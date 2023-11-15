@@ -3,10 +3,8 @@ $page = 'Cases';
 require_once 'lib/databaseHandler/connection.php';
 session_start();
 require_once 'lib/no_session_bypass.php';
+require_once 'assets/includes/functions.php';
 date_default_timezone_set('Asia/Manila');
-
-$lat ="15.7718570";
-$long = "121.5542300";
 
 ?>
 
@@ -55,6 +53,9 @@ $long = "121.5542300";
 
 
     <?php
+    $coor = "15.7718570,121.5542300";
+
+    echo getAddress($coor);
 
     include_once 'assets/includes/footer.php';
     require_once 'assets/includes/script.php';

@@ -20,14 +20,7 @@ $primaryKey = 'crime_id';
 $columns = array(
     array('db' => 'name', 'dt' => 0),
     array('db' => 'coordinates',  'dt' => 1),
-    array(
-        'db'        => 'municipality',
-        'dt'        => 2,
-        'formatter' => function ($d, $row) {
-            $d = '<p class="municipality">'.$d.'</p>';
-            return $d;
-        }
-    ),
+    array('db' => 'municipality',  'dt' => 2),
     array(
         'db'        => 'date',
         'dt'        => 3,
