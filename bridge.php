@@ -15,7 +15,6 @@ if (isset($_POST['message'])) {
     $lat = $scoor[0];
     $long = $scoor[1];
 
-    $data = loc($lat, $long);
 
 
     if ($lat != '0.0000000' && $long != '0.0000000') {
@@ -43,6 +42,5 @@ if (isset($_POST['message'])) {
         echo "Invalid location";
         echo $lat;
         echo $long;
-        echo $data;
     }
 }
