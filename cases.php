@@ -53,9 +53,6 @@ date_default_timezone_set('Asia/Manila');
 
 
     <?php
-    $coor = "15.7718570,121.5542300";
-
-    echo getAddress($coor);
 
     include_once 'assets/includes/footer.php';
     require_once 'assets/includes/script.php';

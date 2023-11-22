@@ -17,7 +17,7 @@ if (isset($_POST['message'])) {
 
 
 
-    if ($lat != '0.0000000' && $long != '0.0000000') {
+    //if ($lat != '0.0000000' && $long != '0.0000000') {
 
         $select = $pdo->prepare("SELECT * FROM client_list WHERE device_id = '$phone'");
         $select->execute();
@@ -38,9 +38,9 @@ if (isset($_POST['message'])) {
                 echo "success";
             }
         }
-    } else {
-        echo "Invalid location";
-        echo $lat;
-        echo $long;
-    }
+    //} else {
+        // echo "Invalid location";
+        // echo $lat;
+        // echo $long;
+    //}
 }

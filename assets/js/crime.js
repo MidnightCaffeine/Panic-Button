@@ -10,6 +10,11 @@ $(document).ready(function () {
   //   // $("#crimeListTable").DataTable().ajax.reload();
   // });
 
+  setInterval(function(){ 
+    $("#crimeListTable").DataTable().ajax.reload();
+
+}, 10000);
+
   $(document).on("click", ".setLocation", function () {
     var coordinates = $(this).attr("id");
     coor = coordinates;

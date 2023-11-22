@@ -38,6 +38,8 @@ if (isset($_POST['login'])) {
             if (password_verify('1', $row['privilege'])) {
                 $_SESSION['sos_userType'] = '1';
             }
+        } else {
+            $combinationError = true;
         }
     }
 } else {
@@ -74,19 +76,32 @@ if (isset($_POST['login'])) {
         $("#password").removeClass(".input-error");
     }
 
-    if (loginErrorEmail == false && loginErrorPassword == false && combinationError == false) {
-        Swal.fire({
-            title: "Login Successful!",
-            text: "Redirecting to home page",
-            icon: "success",
-            timer: 2000,
-            timerProgressBar: true,
-            showConfirmButton: false
-        });
+    if (loginErrorEmail == false && loginErrorPassword == false) {
 
-        setTimeout(function() {
-            window.location.replace("home.php"); //will redirect to homepage
-        }, 2000); //redirect after 2 seconds
+        if (combinationError == false) {
+            Swal.fire({
+                title: "Login Successful!",
+                text: "Redirecting to home page",
+                icon: "success",
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
+
+            setTimeout(function() {
+                window.location.replace("home.php"); //will redirect to homepage
+            }, 2000); //redirect after 2 seconds
+        }else{
+            Swal.fire({
+                title: "Incorrect Password!!!",
+                text: "Please try again",
+                icon: "error",
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
+        }
+
 
     }
 </script>
