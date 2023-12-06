@@ -28,4 +28,4 @@
     <link rel="stylesheet" href="assets/css/sweetalert2.min.css" />
     <script type="text/javascript" src="assets/js/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script type="text/javascript" src="assets/js/moment.js"></script>
+    <script type="text/javascript" src="assets/js/notification.js"></script>
