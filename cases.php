@@ -33,18 +33,24 @@ date_default_timezone_set('Asia/Manila');
         </div>
         <section class="section dashboard">
 
+
             <table id="crimeListTable" class="display table table-bordered">
                 <thead>
                     <tr>
+                        <th>No.</th>
                         <th>Fullname</th>
                         <th>Coordinates</th>
-                        <th>Barangay</th>
+                        <th>Municipality</th>
+                        <th>Address</th>
                         <th>Date</th>
-                        <th>Action</th>
+                        <th>View Location</th>
+                        <th>Submit Report</th>
                         <!-- <th>set location</th> -->
                     </tr>
                 </thead>
+                <tbody class="table-group-divider" id='crime_data'>
 
+                </tbody>
             </table>
 
         </section>
@@ -61,6 +67,71 @@ date_default_timezone_set('Asia/Manila');
     <?php
 
     ?>
+
+    <div class="modal fade" id="createReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Report</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" id="createReportForm" action="lib/crime/submit_report.php" method="post">
+                        <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                        <p class="form-message"></p>
+                        <input type="hidden" id="hidden_id" name="hidden_id">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="victim_name" name="victim_name" placeholder="victim_name" readonly>
+                            <label for="victim_name">Victim Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="reporting_officer" name="reporting_officer" placeholder="Reporting Officer">
+                            <label for="reporting_officer">Reporting Officer</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select id="municipality" name="municipality" class="form-select" aria-label="Municipality">
+                                <option value="Baler" selected>Baler</option>
+                                <option value="Casiguran">Casiguran</option>
+                                <option value="Dilasag">Dilasag</option>
+                                <option value="Dinalungan">Dinalungan</option>
+                                <option value="Dingalan">Dingalan</option>
+                                <option value="Dipaculao">Dipaculao</option>
+                                <option value="Maria Aurora">Maria Aurora</option>
+                                <option value="San Luis">San Luis</option>
+                            </select>
+                            <label for="municipality">Municipality</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                            <label for="address">Address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="incident" name="incident" placeholder="Incident">
+                            <label for="incident">Incident</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea type="text" class="form-control" id="details" placeholder="Event Details"></textarea>
+                            <label for="details">Event Details</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea type="text" class="form-control" id="actions" placeholder="Actions"></textarea>
+                            <label for="actions">Actions Taken</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea type="text" class="form-control" id="summary" placeholder="Summary"></textarea>
+                            <label for="summary">Summary</label>
+                        </div>
+
+                        <div class="col-md-12 text-center block">
+                            <button type="submit" name="add_report" id="add_report" class="btn btn-success w-100">Submit Report</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </body>
 

@@ -1,11 +1,8 @@
 $(document).ready(function () {
-    
-  $(document).ready(function () {
-    $("#clientTable").DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: "lib/client/fetch_data.php",
-    });
+  $("#clientTable").DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: "lib/client/fetch_data.php",
   });
 
   $("#addClientForm").submit(function (event) {
@@ -26,7 +23,7 @@ $(document).ready(function () {
       client_age: client_age,
       client_address: client_address,
       client_device_id: client_device_id,
-      add_client: add_client
+      add_client: add_client,
     });
   });
 

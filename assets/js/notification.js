@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("#noti_count").load("lib/notif/get_count.php");
     $("#notif_count").load("lib/notif/gets_count.php");
     $("#notifications_item").load("lib/notif/load_notification.php");
+
   }
 
   load_unseen_notification();

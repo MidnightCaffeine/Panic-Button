@@ -38,6 +38,14 @@ if (isset($_POST['login'])) {
             if (password_verify('1', $row['privilege'])) {
                 $_SESSION['sos_userType'] = '1';
             }
+
+            $action = 'Logged to the system';
+            $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+            $insertLog->bindParam(':id', $id );
+            $insertLog->bindParam(':user', $row['email']);
+            $insertLog->bindParam(':action', $action);
+            $insertLog->execute();
         } else {
             $combinationError = true;
         }
@@ -91,7 +99,7 @@ if (isset($_POST['login'])) {
             setTimeout(function() {
                 window.location.replace("home.php"); //will redirect to homepage
             }, 2000); //redirect after 2 seconds
-        }else{
+        } else {
             Swal.fire({
                 title: "Incorrect Password!!!",
                 text: "Please try again",
