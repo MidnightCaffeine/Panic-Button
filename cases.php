@@ -43,8 +43,9 @@ date_default_timezone_set('Asia/Manila');
                         <th>Municipality</th>
                         <th>Address</th>
                         <th>Date</th>
-                        <th>View Location</th>
-                        <th>Submit Report</th>
+                        <th>Location</th>
+                        <th>Audio</th>
+                        <th>Report</th>
                         <!-- <th>set location</th> -->
                     </tr>
                 </thead>
@@ -73,7 +74,7 @@ date_default_timezone_set('Asia/Manila');
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Report</h1>
+                    <h1 class="modal-title fs-5" id="reportTitle">Create Report</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -127,6 +128,38 @@ date_default_timezone_set('Asia/Manila');
                             <button type="submit" name="add_report" id="add_report" class="btn btn-success w-100">Submit Report</button>
                         </div>
                     </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uploadAudios" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="uploads">Upload Evidence</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                    <p class="form-message"></p>
+
+                    <form id="form" action="lib/crime/upload_audio.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="hidden_caseid" name="hidden_caseid">
+                        <input type="hidden" id="hidden_victim_name" name="hidden_victim_name">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="uploadImage" accept="audio/*" name="image">
+                            <label class="input-group-text" for="audioFile">Upload</label>
+                        </div>
+                        <div class="col-md-12 text-center block">
+                            <input type="submit" name="add_report" id="button" class="btn btn-success w-100" value="Upload">
+                        </div>
+                    </form>
+                    <div id="err"></div>
+
+                    <hr>
                 </div>
 
             </div>

@@ -41,18 +41,37 @@ if (isset($_POST['add_report'])) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorAction = true;
     } else {
-        $insert = $pdo->prepare("INSERT INTO reports(crime_id, victim_name, reporting_officer, address, incident, details,actions_taken,summary) VALUES(:crime_id, :client_name, :reporting_officer, :addresse, :incident, :details, :actions, :summary)");
+        $select = $pdo->prepare("SELECT * FROM reports WHERE crime_id = '$crime_id'");
+        $select->execute();
+        $row = $select->fetch(PDO::FETCH_ASSOC);
+        $audioPath = $row['audio'];
 
-        $insert->bindparam('crime_id', $crime_id);
-        $insert->bindparam('client_name', $client_name);
-        $insert->bindparam('reporting_officer', $reporting_officer);
-        $insert->bindparam('addresse', $address);
-        $insert->bindparam('incident', $incident);
-        $insert->bindparam('details', $details);
-        $insert->bindparam('actions', $actions);
-        $insert->bindparam('summary', $summary);
+        if ($select->rowCount() > 0) {
+            $report = $pdo->prepare("UPDATE reports SET reporting_officer = :reporting_officer, address = :addresse, incident = :incident, details = :details, actions_taken = :actions, summary= :summary WHERE crime_id  = :id");
+            $report->bindparam('reporting_officer', $reporting_officer);
+            $report->bindparam('addresse', $address);
+            $report->bindparam('incident', $incident);
+            $report->bindparam('details', $details);
+            $report->bindparam('actions', $actions);
+            $report->bindparam('summary', $summary);
+            $report->bindparam('id', $crime_id);
+        } else {
+            $report = $pdo->prepare("INSERT INTO reports(crime_id, victim_name, reporting_officer, address, incident, details,actions_taken,summary) VALUES(:crime_id, :client_name, :reporting_officer, :addresse, :incident, :details, :actions, :summary)");
 
-        if ($insert->execute()) {
+            $report->bindparam('crime_id', $crime_id);
+            $report->bindparam('client_name', $client_name);
+            $report->bindparam('reporting_officer', $reporting_officer);
+            $report->bindparam('addresse', $address);
+            $report->bindparam('incident', $incident);
+            $report->bindparam('details', $details);
+            $report->bindparam('actions', $actions);
+            $report->bindparam('summary', $summary);
+
+            $status = 2;
+        }
+
+
+        if ($report->execute()) {
             $update = $pdo->prepare("UPDATE crime_list SET municipality = :municipality, address = :addresses, status = :stats WHERE crime_id  = :id");
 
             $update->bindparam('municipality', $municipality);

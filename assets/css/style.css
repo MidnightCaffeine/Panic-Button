@@ -1213,3 +1213,8 @@ h6 {
 	display: inline-block;
 	margin: 100px auto;
 }
+
+.audio-player{
+  width:100%;
+  max-width:600px;
+}

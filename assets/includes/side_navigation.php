@@ -21,8 +21,21 @@
             }
             ?>
             " href="cases.php">
-            <i class="bi bi-folder"></i>
+                <i class="bi bi-folder"></i>
                 <span>Cases</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link 
+            <?php
+            if ($page != 'Reports') {
+                echo 'collapsed';
+            }
+            ?>
+            " href="reports.php">
+                <i class="bi bi-file-earmark"></i>
+                <span>Reports</span>
             </a>
         </li>
 
@@ -34,7 +47,7 @@
             }
             ?>
             " href="client_list.php">
-            <i class="bi bi-person-badge"></i>
+                <i class="bi bi-person-badge"></i>
                 <span>Client list</span>
             </a>
         </li>
@@ -63,7 +76,7 @@
             <a class="nav-link 
             <?php
             // if ($page != 'Logs') {
-                //echo 'collapsed';
+            //echo 'collapsed';
             //}
             ?>
             " href="Payments.html">

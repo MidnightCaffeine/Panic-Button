@@ -47,7 +47,19 @@ $columns = array(
         'dt'        => 7,
         'formatter' => function ($d, $row) {
             $d = '
-            <button type="button" id="' . $d . '" class="btn btn-success addReport">
+            <button type="button" id="' . $d . '" class="btn btn-primary uploadAudio">
+                <i class="bi bi-clipboard-check"></i> Upload Audio
+            </button>
+            ';
+            return $d;
+        }
+    ),
+    array(
+        'db'        => 'crime_id',
+        'dt'        => 8,
+        'formatter' => function ($d, $row) {
+            $d = '
+            <button type="button" id="' . $d . '" class="btn btn-primary addReport">
                 <i class="bi bi-clipboard-check"></i> Submit Report
             </button>
             ';
@@ -61,5 +73,5 @@ require '../databaseHandler/ssp.class.php';
 
 // Output data as json format 
 echo json_encode(
-    SSP::simple($_GET, $dbDetails, $table, $primaryKey, $columns)
+    SSP::complex($_GET, $dbDetails, $table, $primaryKey, $columns, null, "status='0' or status='2'")
 );
