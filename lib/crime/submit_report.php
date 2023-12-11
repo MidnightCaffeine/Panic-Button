@@ -1,6 +1,6 @@
 <?php
 require_once '../databaseHandler/connection.php';
-
+session_start();
 
 if (isset($_POST['add_report'])) {
     $crime_id = $_POST['crime_id'];
@@ -79,6 +79,14 @@ if (isset($_POST['add_report'])) {
             $update->bindparam('stats', $status);
             $update->bindparam('id', $crime_id);
             $update->execute();
+
+            $action = 'Submit report for case no. '.$crime_id;
+            $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+            $insertLog->bindParam(':id', $_SESSION['myid'] );
+            $insertLog->bindParam(':user', $reporting_officer);
+            $insertLog->bindParam(':action', $action);
+            $insertLog->execute();
         }
     }
 }

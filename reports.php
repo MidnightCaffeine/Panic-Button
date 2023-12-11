@@ -90,6 +90,7 @@ date_default_timezone_set('Asia/Manila');
                         <p>The Reporting Officer Doesnt upload an Audio File</p>
                     </div>
                     <hr>
+
                     <h5><strong>Case Number:</strong> <span id="caseNo"></span></h5>
                     <h5><strong>Victim Name:</strong> <span id="victim"></span></h5>
                     <h5><strong>Date:</strong> <span id="report_date"></span></h5>
@@ -103,10 +104,13 @@ date_default_timezone_set('Asia/Manila');
                     <h5 id="actions_taken"></h5>
                     <h5><strong>Summary:</strong></h5>
                     <h5 id="summary"></h5>
+                    <form id="form" action="generate_pdf.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="case_id" name="case_id">
+                        <div class="col-md-12 text-center block">
+                            <button type="submit" name="generate_pdf" id="generate_pdf" class="btn btn-success w-100">Generate PDF</button>
+                        </div>
+                    </form>
 
-                    <div class="col-md-12 text-center block">
-                        <button type="submit" name="add_report" id="add_report" class="btn btn-success w-100">Submit Report</button>
-                    </div>
                 </div>
 
             </div>

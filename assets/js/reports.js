@@ -40,6 +40,7 @@ $(document).ready(function () {
         $("audio").get(0).load();
 
         $("#caseNo").text(crime_id);
+        $("#case_id").val(crime_id);
         $("#victim").text(data.fullname);
         $("#report_date").text(data.date);
         $("#officer").text(data.officer);
@@ -57,6 +58,23 @@ $(document).ready(function () {
     $("audio #audio_player1").attr("src", clears);
     $("audio #audio_player2").attr("src", clears);
   });
+
+  // $(document).on("click", "#generate_pdf", function () {
+  //   var case_id = $("#caseNo").text();
+
+  //   $.ajax({
+  //     url: "generete_pdf.php",
+  //     method: "POST",
+  //     data: {
+  //       case_id,
+  //     },
+  //     dataType: "json",
+  //     success: function (data) {
+  //       // $("#hidden_victim_name").val(data.fullname);
+  //       $("#viewReports").modal("hide");
+  //     },
+  //   });
+  // });
 
 
 });
