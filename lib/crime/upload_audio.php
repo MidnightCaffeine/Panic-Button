@@ -1,5 +1,6 @@
 <?php
 require_once '../databaseHandler/connection.php';
+session_start();
 
 $valid_extensions = array('wav', 'mp3', 'mp4'); // valid extensions
 $path = '../../evidence/'; // upload directory
@@ -34,4 +35,12 @@ if (isset($_FILES['image'])) {
     $insert->bindparam('client_name', $victim_name);
     $insert->bindparam('audio', $final_image);
     $insert->execute();
+
+    $action = 'Uploads audio file for case no. ' . end($temp);
+    $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+    $insertLog->bindParam(':id', $_SESSION['myid']);
+    $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
+    $insertLog->bindParam(':action', $action);
+    $insertLog->execute();
 }

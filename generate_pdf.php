@@ -25,6 +25,7 @@ class PDF extends FPDF
     }
 }
 if (isset($_POST['case_id'])) {
+
     // Instanciation of inherited class
     $pdf = new PDF();
     $pdf->AliasNbPages();
@@ -36,26 +37,35 @@ if (isset($_POST['case_id'])) {
     $select = $pdo->prepare(
         "SELECT * FROM reports WHERE crime_id = '" . $_POST["case_id"] . "'"
     );
-    $select->execute();
-    $result = $select->fetchAll();
-    foreach ($result as $row) {
-        $date = date("F j, Y, g:i a", strtotime($row["date"]));
-        $pdf->Cell(0, 10, 'Case Number:  ' . $row["crime_id"], 0, 1);
-        $pdf->Cell(0, 10, 'Victim Name:  ' . $row["victim_name"], 0, 1);
-        $pdf->Cell(0, 10, 'Date:  ' . $date, 0, 1);
-        $pdf->Cell(0, 10, 'Reporting Officer:  ' . $row["reporting_officer"], 0, 1);
-        $pdf->Cell(0, 10, 'Address:  ' . $row["address"], 0, 1);
-        $pdf->Cell(0, 10, 'Incident:  ' . $row["incident"], 0, 1);
-        $pdf->Cell(0, 10, '', 0, 1);
-        $pdf->Cell(0, 10, 'Event Details:  ', 0, 1);
-        $pdf->Cell(0, 10, $row["details"], 0, 1);
-        $pdf->Cell(0, 10, '', 0, 1);
-        $pdf->Cell(0, 10, 'Actions taken:  ', 0, 1);
-        $pdf->Cell(0, 10,  $row["actions_taken"], 0, 1);
-        $pdf->Cell(0, 10, '', 0, 1);
-        $pdf->Cell(0, 10, 'Summary:  ', 0, 1);
-        $pdf->Cell(0, 10,  $row["summary"], 0, 1);
-        $pdf->Cell(0, 10, '', 0, 1);
-        $pdf->Output();
+    if ($select->execute()) {
+        $action = 'Generates a printable report for ' . $_POST['case_id'];
+        $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+        $insertLog->bindParam(':id', $_SESSION['myid']);
+        $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
+        $insertLog->bindParam(':action', $action);
+        $insertLog->execute();
+
+        $result = $select->fetchAll();
+        foreach ($result as $row) {
+            $date = date("F j, Y, g:i a", strtotime($row["date"]));
+            $pdf->Cell(0, 10, 'Case Number:  ' . $row["crime_id"], 0, 1);
+            $pdf->Cell(0, 10, 'Victim Name:  ' . $row["victim_name"], 0, 1);
+            $pdf->Cell(0, 10, 'Date:  ' . $date, 0, 1);
+            $pdf->Cell(0, 10, 'Reporting Officer:  ' . $row["reporting_officer"], 0, 1);
+            $pdf->Cell(0, 10, 'Address:  ' . $row["address"], 0, 1);
+            $pdf->Cell(0, 10, 'Incident:  ' . $row["incident"], 0, 1);
+            $pdf->Cell(0, 10, '', 0, 1);
+            $pdf->Cell(0, 10, 'Event Details:  ', 0, 1);
+            $pdf->Cell(0, 10, $row["details"], 0, 1);
+            $pdf->Cell(0, 10, '', 0, 1);
+            $pdf->Cell(0, 10, 'Actions taken:  ', 0, 1);
+            $pdf->Cell(0, 10,  $row["actions_taken"], 0, 1);
+            $pdf->Cell(0, 10, '', 0, 1);
+            $pdf->Cell(0, 10, 'Summary:  ', 0, 1);
+            $pdf->Cell(0, 10,  $row["summary"], 0, 1);
+            $pdf->Cell(0, 10, '', 0, 1);
+            $pdf->Output();
+        }
     }
 }

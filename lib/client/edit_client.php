@@ -1,5 +1,6 @@
 <?php
 require_once '../databaseHandler/connection.php';
+session_start();
 
 
 if (isset($_POST['edit_client'])) {
@@ -32,13 +33,13 @@ if (isset($_POST['edit_client'])) {
     } elseif (empty($edit_client_age)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorAge = true;
-    }elseif (empty($edit_client_address)) {
+    } elseif (empty($edit_client_address)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorAddress = true;
-    }elseif (empty($edit_client_device_id)) {
+    } elseif (empty($edit_client_device_id)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorDevice = true;
-    }else {
+    } else {
 
         $update = $pdo->prepare("UPDATE client_list SET firstname = :firstname, lastname = :lastname, middlename = :middlename , age = :age , address = :address, device_id = :device_id WHERE client_id = :id");
 
@@ -51,6 +52,14 @@ if (isset($_POST['edit_client'])) {
         $update->bindparam('id', $id);
 
         $update->execute();
+
+        $action = 'Edit information of ' . $edit_client_firstname . ' ' . $edit_client_middlename . ' ' . $edit_client_lastname . ' on the client list';
+        $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+        $insertLog->bindParam(':id', $_SESSION['myid']);
+        $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
+        $insertLog->bindParam(':action', $action);
+        $insertLog->execute();
     }
 }
 ?>

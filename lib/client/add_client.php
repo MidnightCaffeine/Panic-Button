@@ -30,10 +30,10 @@ if (isset($_POST['add_client'])) {
     } elseif (empty($client_age)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorAge = true;
-    }elseif (empty($client_address)) {
+    } elseif (empty($client_address)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorAddress = true;
-    }elseif (empty($client_device_id)) {
+    } elseif (empty($client_device_id)) {
         echo "<span class='form-error'>Fill in all fields!</span>";
         $errorDevice = true;
     } else {
@@ -47,6 +47,14 @@ if (isset($_POST['add_client'])) {
         $insert->bindparam('client_device_id', $client_device_id);
 
         $insert->execute();
+
+        $action = 'Added ' . $client_firstname . ' ' . $client_middlename . ' ' . $client_lastname . ' to the client list';
+        $insertLog = $pdo->prepare("INSERT INTO logs(user_id, user_email, action) values(:id, :user, :action)");
+
+        $insertLog->bindParam(':id', $_SESSION['myid']);
+        $insertLog->bindParam(':user', $_SESSION['sos_userEmail']);
+        $insertLog->bindParam(':action', $action);
+        $insertLog->execute();
     }
 }
 ?>
