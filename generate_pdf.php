@@ -1,28 +1,27 @@
 <?php
-require('fpdf.php');
 session_start();
 include_once 'lib/databaseHandler/connection.php';
 
 $cs_id = $_POST['case_id'];
+require('rotation.php');
 
-class PDF extends FPDF
+class PDF extends PDF_Rotate
 {
+function Header()
+{
+    //Put the watermark
+    $this->SetFont('Arial','B',50);
+    $this->SetTextColor(255,192,203);
+    $this->RotatedText(35,190,'P A N I C B U T T O N',45);
+}
 
-    // Page header
-    function Header()
-    {
-        global $title;
-        // Logo
-        $this->Image('assets/img/panicLogo.png', 10, 6, 30);
-        // Arial bold 15
-        $this->SetFont('Arial', 'B', 15);
-        // Move to the right
-        $this->Cell(80);
-        // Title
-        $this->Cell(30, 10, "Panic Button", 1, 0, 'C');
-        // Line break
-        $this->Ln(20);
-    }
+function RotatedText($x, $y, $txt, $angle)
+{
+    //Text rotated around its origin
+    $this->Rotate($angle,$x,$y);
+    $this->Text($x,$y,$txt);
+    $this->Rotate(0);
+}
 }
 if (isset($_POST['case_id'])) {
 
